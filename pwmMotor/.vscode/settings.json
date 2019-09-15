@@ -1,0 +1,6 @@
+{
+	"terminal.integrated.env.linux": {
+		"PATH": "/home/shrey/.platformio/penv/bin:/home/shrey/.platformio/penv:/home/shrey/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/opt/cuda/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/shrey/Muse",
+		"PLATFORMIO_CALLER": "vscode"
+	}
+}
