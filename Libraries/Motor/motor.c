@@ -21,6 +21,7 @@ void motorInit(Motor* motor) {
   /* Timer Values */
   motor->timPrescaler = 65535 / 4;
   motor->timPeriod = 5;
+
 }
 
 void InitializeTimer(Motor* motor) {
@@ -38,7 +39,7 @@ void InitializeTimer(Motor* motor) {
 }
 
 // TODO: Implement initialization using loops
-void intializeWheels(Motor* motor) {
+void IntializeWheels(Motor* motor) {
   RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
   RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOB, ENABLE);
   RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOC, ENABLE);

@@ -15,18 +15,32 @@ void Motor::InitializeTimer() {
 }
 
 void Motor::intializeWheels() {
+  RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
   RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOB, ENABLE);
+  RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOC, ENABLE);
+  RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOD, ENABLE);
   RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOE, ENABLE);
 
   GPIO_InitTypeDef gpio;
   GPIO_StructInit(&gpio);
   gpio.GPIO_Mode = GPIO_Mode_OUT;
-  gpio.GPIO_Pin = GPIO_Pin_15 | GPIO_Pin_13 | GPIO_Pin_11;
+  gpio.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_11 | GPIO_Pin_15;
   gpio.GPIO_Speed = GPIO_Speed_2MHz;
-  GPIO_Init(GPIOB, &gpio);
+  // gpio.GPIO_PuPd = GPIO_PuPd_DOWN;
+
+  GPIO_Init(GPIOD, &gpio);
 
   gpio.GPIO_Pin = GPIO_Pin_14;
   GPIO_Init(GPIOE, &gpio);
+
+  gpio.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_4 | GPIO_Pin_5;
+  GPIO_Init(GPIOA, &gpio);
+
+  gpio.GPIO_Pin = GPIO_Pin_11 | GPIO_Pin_13 | GPIO_Pin_15;
+  GPIO_Init(GPIOB, &gpio);
+
+  gpio.GPIO_Pin = GPIO_Pin_4 | GPIO_Pin_6;
+  GPIO_Init(GPIOC, &gpio);
 }
 
 

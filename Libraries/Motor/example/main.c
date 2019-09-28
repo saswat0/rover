@@ -12,12 +12,25 @@ void DelayMotor(Motor* motor, uint32_t nTime);
 int main() {
   Motor motor;
   motorInit(&motor);
+  InitializeTimer(&motor);
+  IntializeWheels(&motor);
 
   if (SysTick_Config(SystemCoreClock / 1000))
     while (1)
       ;
 
+  // DEBUG CODE
+  GPIO_InitTypeDef GPIO_InitStructure;
+  // Enable Peripheral Clocks
+  RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOE, ENABLE);
+  GPIO_StructInit(&GPIO_InitStructure);
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOE, &GPIO_InitStructure);
+  // DEBUG CODE END
 
+  GPIO_WriteBit(GPIOE, GPIO_Pin_9, Bit_SET);
   resetAll(&motor);
   Delay(1000);
   GPIO_WriteBit(GPIOE, GPIO_Pin_9, Bit_RESET);
@@ -35,10 +48,9 @@ int main() {
 
     moveRover(&motor, RIGHT);
     DelayMotor(&motor, 2000);
-    
+
     moveRover(&motor, STOP);
     Delay(2000);
-
   }
 }
 

@@ -1,3 +1,7 @@
+#ifndef __MOTOR_H
+#define __MOTOR_H
+#endif
+
 #include <stm32f30x.h>
 #include <stm32f30x_gpio.h>
 #include <stm32f30x_rcc.h>
@@ -49,7 +53,7 @@ void motorInit(Motor* motor);
 
 // Initialization Functions
 void InitializeTimer(Motor* motor);
-void intializeWheels(Motor* motor);
+void IntializeWheels(Motor* motor);
 
 
 // Control motor by selecting
