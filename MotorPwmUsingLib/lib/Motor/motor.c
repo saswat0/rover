@@ -21,7 +21,6 @@ void motorInit(Motor* motor) {
   /* Timer Values */
   motor->timPrescaler = 65535 / 4;
   motor->timPeriod = 5;
-
 }
 
 void InitializeTimer(Motor* motor) {
@@ -80,7 +79,6 @@ void IntializeWheels(Motor* motor) {
 
 void controlWheel(Motor* motor, const int index, const int speed,
                   const int direct) {
-
   if (speed == 0) return;
   int timerValue = TIM_GetCounter(TIM2);
   // Speed control
@@ -109,38 +107,44 @@ void moveRover(Motor* motor, int dir) {
       break;
     case FORWARD:
       // Delay(10);
-      controlWheel(motor, 0, 3, 0);
-      controlWheel(motor, 1, 3, 0);
-      controlWheel(motor, 2, 3, 0);
-      controlWheel(motor, 3, 3, 1);
+      controlWheel(motor, 0, 3, 1);
+      controlWheel(motor, 1, 3, 1);
+      controlWheel(motor, 2, 3, 1);
+      controlWheel(motor, 3, 3, 0);
       controlWheel(motor, 4, 3, 0);
       controlWheel(motor, 5, 3, 0);
       break;
     case RIGHT:
-      controlWheel(motor, 0, 3, 0);
-      controlWheel(motor, 1, 3, 0);
+      controlWheel(motor, 0, 3, 1);
+      controlWheel(motor, 1, 3, 1);
       controlWheel(motor, 2, 3, 0);
       controlWheel(motor, 3, 3, 0);
       controlWheel(motor, 4, 3, 1);
       controlWheel(motor, 5, 3, 1);
       break;
     case BACKWARD:
-      controlWheel(motor, 0, 3, 1);
-      controlWheel(motor, 1, 3, 1);
-      controlWheel(motor, 2, 3, 1);
-      controlWheel(motor, 3, 3, 0);
+      controlWheel(motor, 0, 3, 0);
+      controlWheel(motor, 1, 3, 0);
+      controlWheel(motor, 2, 3, 0);
+      controlWheel(motor, 3, 3, 1);
       controlWheel(motor, 4, 3, 1);
       controlWheel(motor, 5, 3, 1);
       break;
     case LEFT:
-      controlWheel(motor, 0, 3, 1);
-      controlWheel(motor, 1, 3, 1);
+      controlWheel(motor, 0, 3, 0);
+      controlWheel(motor, 1, 3, 0);
       controlWheel(motor, 2, 3, 1);
       controlWheel(motor, 3, 3, 1);
       controlWheel(motor, 4, 3, 0);
       controlWheel(motor, 5, 3, 0);
       break;
     default:
+      controlWheel(motor, 0, 0, 0);
+      controlWheel(motor, 1, 0, 0);
+      controlWheel(motor, 2, 0, 0);
+      controlWheel(motor, 3, 0, 0);
+      controlWheel(motor, 4, 0, 0);
+      controlWheel(motor, 5, 0, 0);
       break;
   }
 }

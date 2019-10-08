@@ -38,20 +38,19 @@ int main() {
 
   while (1) {
     moveRover(&motor, FORWARD);
-    DelayMotor(&motor, 1000);
+    DelayMotor(&motor, 2000);
 
     moveRover(&motor, BACKWARD);
-    DelayMotor(&motor, 1000);
+    DelayMotor(&motor, 2000);
 
     moveRover(&motor, LEFT);
-    DelayMotor(&motor, 1000);
+    DelayMotor(&motor, 2000);
 
     moveRover(&motor, RIGHT);
-    DelayMotor(&motor, 1000);
+    DelayMotor(&motor, 2000);
 
     moveRover(&motor, STOP);
-    // resetAll(&motor);
-    DelayMotor(&motor, 1000);
+    Delay(2000);
   }
 }
 
