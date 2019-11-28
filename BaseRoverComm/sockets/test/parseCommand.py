@@ -188,7 +188,7 @@ def parseCommand(bytes):
 		if x&firstCommand == 0x020:
 			print("Increase RPM")
 		elif x&firstCommand == 0x030:
-			print("Increase RPM")
+			print("Decrease RPM")
 		else:
 			print("No change for RPM control")
 	else:
