@@ -8,6 +8,8 @@ def parseBase(direction):
       x|=0x60
     elif direction == 'R':
       x|=0x70
+    # elif direction == 'S':
+    #     x|=000
     return x
 
 def parseCamera(cameraNum):
@@ -148,35 +150,38 @@ def parseAddLongitude(longitude):
     # print(type(x))
     return x
 
+def parsePWM(state):
+    x = 0xf00
+    if state == 'U':
+        x|=0x020
+    if state == 'D':
+        x|=0x030
+    return x
+
 import socket
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 PORT = 8000
 IP = '192.168.43.191'
-data = bytes(1)
 
-# print(data | 0x01)
-# print('Sending Data ',data)
-sock.bind(('',PORT))
-sock.listen(5)
-c,addr = sock.accept()
-print('Got connection from', addr)
+sock.connect((IP,PORT))
 
-c.send(parseBase('F').to_bytes(3,'little'))
-c.send(parseCamera(1).to_bytes(3,'little'))
-c.send(parseArm('L').to_bytes(3,'little'))
-c.send(parseActuator1('E').to_bytes(3,'little'))
-c.send(parseActuator2('R').to_bytes(3,'little'))
-c.send(parseActuator3('E').to_bytes(3,'little'))
-c.send(parseGripperDir('L').to_bytes(3,'little'))
-c.send(parseGripperState('O').to_bytes(3,'little'))
-c.send(parseSoil(3).to_bytes(3,'little'))
-c.send(parseElectrical(5).to_bytes(3,'little'))
-c.send(parseElectrical(8).to_bytes(3,'little'))
-c.send(parseGpsRequest().to_bytes(3,'little'))
-c.send(parseSoilSetup('augerDown').to_bytes(3,'little'))
-c.send(parseAutonomousCommands('startAutonomous').to_bytes(3,'little'))
-c.send(parseAddLatitude('lattiude').to_bytes(3,'little'))
-c.send(parseAddLongitude('longitude').to_bytes(3,'little'))
+sock.send(parseBase('F').to_bytes(3,'little'))
+sock.send(parseCamera(1).to_bytes(3,'little'))
+sock.send(parseArm('L').to_bytes(3,'little'))
+sock.send(parseActuator1('E').to_bytes(3,'little'))
+sock.send(parseActuator2('R').to_bytes(3,'little'))
+sock.send(parseActuator3('E').to_bytes(3,'little'))
+sock.send(parseGripperDir('L').to_bytes(3,'little'))
+sock.send(parseGripperState('O').to_bytes(3,'little'))
+sock.send(parseSoil(3).to_bytes(3,'little'))
+sock.send(parseElectrical(5).to_bytes(3,'little'))
+sock.send(parseElectrical(8).to_bytes(3,'little'))
+sock.send(parseGpsRequest().to_bytes(3,'little'))
+sock.send(parseSoilSetup('augerDown').to_bytes(3,'little'))
+sock.send(parseAutonomousCommands('startAutonomous').to_bytes(3,'little'))
+sock.send(parseAddLatitude('lattiude').to_bytes(3,'little'))
+sock.send(parseAddLongitude('longitude').to_bytes(3,'little'))
+sock.send(parsePWM('U').to_bytes(3,'little'))
 
-c.close()
+sock.close()
