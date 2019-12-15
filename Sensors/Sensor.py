@@ -12,8 +12,8 @@ class Sensor:
 		return [hex(i) for i in list(msg)]
 
 	def getAllSensorValue(self):
-		values = bus.i2c_rdwr(msg)
-		return parseMsg(msg)
+		values = self.bus.i2c_rdwr(self.msg)
+		return parseMsg(values)
 
 	def getSensorValue(self, sensor):
 		sensorValues = self.getAllSensorValue()
