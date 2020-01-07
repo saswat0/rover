@@ -22,3 +22,11 @@ class Sensor:
 		for i in self.sensorIndex[sensor]:
 			bytesRequired.append(sensorValues[i])
 		return bytesRequired
+
+	def getSensorValueBytes(self):
+		msg = self.msg
+		self.bus.i2c_rdwr(msg)
+		return msg.__bytes__()	
+
+	def close(self):
+		self.bus.close()
