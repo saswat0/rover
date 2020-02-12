@@ -1,0 +1,72 @@
+{% extends "common.html" %}
+
+{% block title %}
+ - Science
+{% endblock title %}
+
+{% block feed_col %}"col-auto"{% endblock feed_col %}
+
+{% block cam_feed_url %}"{{url_for('video_feed')}}"{% endblock cam_feed_url %}
+
+{% block soil_values %}
+<div class="col-4">
+    <table class="table table-bordered gpsTable table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th colspan="2" scope="col">Sensor Values</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Atmospheric Pressure</th>
+                <td><span id="atmPressure">1004.79</span> hPa</td>
+            </tr>
+            <tr>
+                <th>Atmospheric Temperature</th>
+                <td><span id="atmTemp">29.99</span> &#8451;</td>
+            </tr>
+            <tr>
+                <th>Atmospheric Humidity</th>
+                <td><span id="atmHum">59.99</span> %</td>
+            </tr>
+            <tr>
+                <th>Methane Concentration</th>
+                <td><span id="CH4">1.854</span> ppm</td>
+            </tr>
+            <tr>
+                <th>UV Index</th>
+                <td><span id="UV">3</span></td>
+            </tr>
+            <tr>
+                <th>Soil Temperature</th>
+                <td><span id="soilTemp">29.99</span> &#8451;</td>
+            </tr>
+            <tr>
+                <th>Soil pH</th>
+                <td><span id="soilpH">7</span> pH</td>
+            </tr>
+            <tr>
+                <th>Soil Moisture</th>
+                <td><span id="soilMoisture">58.88</span> %</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock soil_values %}
+
+{% block extra_body_bottom %}
+<div class="row my-2">
+    <div class="col mr-1 border border-success my-auto">
+        <p><b>Base Motors Status</b></p>
+        <div class="p-3 mb-2 rounded bg-primary text-center text-white" id="BaseStatus">Idle</div>
+    </div>
+    <div class="col ml-1 border border-success my-auto">
+        <p><b>Drill Chasis Status</b></p>
+        <div class="p-3 mb-2 rounded bg-primary text-center text-white" id="ArmStatus">Idle</div>
+    </div>
+</div>
+{% endblock extra_body_bottom %}
+
+{% block extra_javascripts %}
+<script src="static/js/science.js"></script>
+{% endblock extra_javascripts %}

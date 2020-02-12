@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block common_body %}
+<!-- Cam Feed and Values -->
+<div class="row">
+    <!-- Camera Feed -->
+    <div class={% block feed_col %}{% endblock feed_col %} style="background-color:powderblue;">
+        <div class="input-group mb-3 mt-1">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="cameraNumber">Camera Feed</label>
+            </div>
+            <select class="custom-select" id="cameraNumber">
+                <option selected value="1">One</option>
+                <option value="2">Two</option>
+            </select>
+        </div>
+        <img src={% block cam_feed_url %}{% endblock cam_feed_url %} class="img-fluid rounded mx-auto d-block mb-2" alt="static/images/Technocrats_Robotics_v2.png">
+    </div>
+    <!-- End of Camera Feed -->
+
+    <!-- Force next columns to break to new line -->
+    <!-- <div class="w-100"></div> -->
+
+    {% block soil_values %}{% endblock soil_values %}
+    <!-- Electrical Values -->
+    <div class="col-3">
+        <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="swtSensors">
+            <label class="custom-control-label" for="swtSensors"><b>Sensors</b></label>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th colspan="2" scope="col">Electrical Values</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Battery 1</th>
+                            <td><span id="battery1">24.9</span> V</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Battery 2</th>
+                            <td><span id="battery2">24</span> V</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% block Detection_status %}{% endblock Detection_status %}
+    </div>
+    <!--  End of Electrical Values -->
+</div>
+<!-- End of Feed and Values -->
+
+<!-- GPS values -->
+<div class="row my-2">
+    <div class="col">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th colspan="4" scope="col">GPS and Magnetometer Values</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Current Location</th>
+                    <td id="currentGPS">41°24'12.2"N 2°10'26.5"E</td>
+                    <th scope="row">Compass</th>
+                    <td id="compass">137.554°</td>
+                </tr>
+                {% block addGPS %}{% endblock addGPS %}
+            </tbody>
+        </table>
+    </div>
+    {% block listOfLocations %}{% endblock listOfLocations %}
+</div>
+<!-- End of GPS values -->
+{% endblock common_body %}
+
+{% block javascripts %}
+<script src="static/js/common.js"></script>
+{% block extra_javascripts %}{% endblock extra_javascripts %}
+{% endblock javascripts %}
